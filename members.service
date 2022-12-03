@@ -1,0 +1,16 @@
+[Unit]
+Description= displays members of uek109
+After=network.target
+
+[Service]
+Environment=DB_USER=postgres 
+Environment=DB_PASS="TT!Glgb=j!cTSy!p" 
+Environment=DB_HOST="uek109-db-1.cnbimaxlz2am.us-east-1.rds.amazonaws.com" 
+Environment=DB_PORT=5432 
+Environment=DB_DATABASE=uek109
+Type=simple
+ExecStart=/usr/bin/node /home/ubuntu/uek109-rds-frontend-direct/index.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
