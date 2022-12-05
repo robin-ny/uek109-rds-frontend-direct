@@ -19,7 +19,6 @@ function elt (type, children) {
 }
 
 
-const url = "http://localhost:3000/";
 
 function updateTable(e){
   e.preventDefault(); 
@@ -44,7 +43,9 @@ function updateTable(e){
   });
 }
 
-function stressServer(){
+function stressServer(e){
+  const url = e.target.baseURI;
+  console.log(e.target.baseURI)
   fetch(url+"api/stress")
     .then((response) => response.json())
     .then((data) => {
@@ -64,7 +65,7 @@ function stressServer(){
 
 <table>
   <tr>
-    <td><button value="Stress CPU" onClick="stressServer()">Stress CPU</td>
+    <td><button value="Stress CPU" onClick="return stressServer(event)">Stress CPU</td>
     <td class="stress-row"></td>
   </tr>
 </table>
