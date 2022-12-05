@@ -69,7 +69,7 @@ app.post('/api/addmember', function (req, res, next){
 });
 
 app.get('/api/stress', function(req, res, next){
-  exec('/bin/bash loadcpu.sh', function(err, stdout, stderr){
+  exec('/bin/bash /home/ubuntu/uek109-rds-frontend-direct/loadcpu.sh', function(err, stdout, stderr){
     if(stdout){
       res.send({stdout})
     }
