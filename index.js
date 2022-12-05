@@ -7,6 +7,7 @@
  var path = require('path');
  require("dotenv").config();
  var app = module.exports = express();
+ var exec = require('child_process').exec;
 
 
 // config
@@ -65,6 +66,20 @@ app.post('/api/addmember', function (req, res, next){
           }
         });
     });
+});
+
+app.get('/api/stress', function(req, res, next){
+  exec('/bin/bash loadcpu.sh', function(err, stdout, stderr){
+    if(stdout){
+      res.send({stdout})
+    }
+    else if(stderr){
+      res.send({stderr})
+    }
+    else{
+      console.log(err)
+    }
+  });
 });
 
 if (!module.parent) {

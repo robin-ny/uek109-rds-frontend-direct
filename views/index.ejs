@@ -44,6 +44,15 @@ function updateTable(e){
   });
 }
 
+function stressServer(){
+  fetch(url+"api/stress")
+    .then((response) => response.json())
+    .then((data) => {
+      document.getElementsByClassName("stress-row")[0].innerHTML = ''
+      document.getElementsByClassName("stress-row")[0].appendChild(elt("tr",data.stdout))
+    })
+}
+
 </script>
 
 <form onsubmit="return updateTable(event)">
@@ -52,6 +61,13 @@ function updateTable(e){
   <input type="text" name="grade" id="grade" placeholder="grade">
   <input type="submit" value="Add/List Members">
 </form>
+
+<table>
+  <tr>
+    <td><button value="Stress CPU" onClick="stressServer()">Stress CPU</td>
+    <td class="stress-row"></td>
+  </tr>
+</table>
 
 <div class="member-table">
   <table>
